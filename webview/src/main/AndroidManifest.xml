@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.gacrnd.gcs.webview" >
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!--android:usesCleartextTraffic="true"   如果要访问的url是http需要在application中加入这行代码
+        Android 9.0以后默认不允许http请求
+    -->
+    <application>
+        <activity android:name=".WebViewActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+    </application>
+</manifest>
