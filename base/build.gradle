@@ -31,4 +31,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //加载动画的依赖
+    api 'com.kingja.loadsir:loadsir:1.3.6'
+    implementation 'com.airbnb.android:lottie:2.8.0'
+
+    //刷新效果的依赖
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-7'
 }

@@ -7,8 +7,12 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.gacrnd.gcs.webview.databinding.ActivityWebviewBinding;
+import com.gacrnd.gcs.webview.utils.Constants;
 
 
 /**
@@ -32,14 +36,16 @@ public class WebViewActivity extends AppCompatActivity {
         }
         binding = DataBindingUtil.setContentView(this, R.layout.activity_webview);
         binding.title.setText(title);
-        binding.actionBar.setVisibility(showActionBar? View.VISIBLE : View.GONE);
-        binding.webview.getSettings().setJavaScriptEnabled(true);
-        binding.webview.loadUrl(url);
+        binding.actionBar.setVisibility(showActionBar ? View.VISIBLE : View.GONE);
         binding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 WebViewActivity.this.finish();
             }
         });
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fragment = WebViewFragment.newInstance(url, true);
+        fragmentTransaction.replace(R.id.web_view_fragment, fragment).commit();
     }
 }

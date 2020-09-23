@@ -1,0 +1,8 @@
+1.WebView包含四个模块：WebChromeClient,WebViewClient,WebSettings,JavaScriptInterface
+
+                           作用                           方法
+Webview:   创建对象，加载URL，生命周期管理，状态管理    loadUrl()加载网页、goBack()后退
+WebSettings 配置管理WebView                           setCacheMode()缓存、setJavaScriptEnabled()与js交互
+WebViewClient   处理各种通知和请求事件                 shouldOverrideUrlLoading()打开网页时显示WebView、onPageStarted()载入页面调用、onPageFinished()页面载入结束调用
+WebChromeClient   辅助WebView处理JavaScript对话框      onProgressChanged()获得网页加载进度，onReceivedTitle()获得webview标题，
+                                                      onJsAlert()支持JS警告框、onJsConfirm()支持JS确认框、onJsPrompt()支持JS输入框
