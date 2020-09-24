@@ -11,4 +11,6 @@ public interface IWebViewService {
     void startWebViewActivity(Context context, String url, String title, boolean isShowActionBar);
 
     Fragment getWebViewFragment(String url,boolean canAutoRefresh);
+
+    void startHtmlDemo(Context context);
 }

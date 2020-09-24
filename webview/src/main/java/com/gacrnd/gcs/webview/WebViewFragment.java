@@ -13,10 +13,10 @@ import androidx.fragment.app.Fragment;
 import com.gacrnd.gcs.base.loadsir.ErrorCallback;
 import com.gacrnd.gcs.base.loadsir.LoadingCallback;
 import com.gacrnd.gcs.webview.databinding.FragmentWebviewBinding;
-import com.gacrnd.gcs.webview.settings.WebDefaultSettings;
+import com.gacrnd.gcs.webview.webviewprocess.settings.WebDefaultSettings;
 import com.gacrnd.gcs.webview.utils.Constants;
-import com.gacrnd.gcs.webview.webchromeclient.MyWebChromeClient;
-import com.gacrnd.gcs.webview.webviewclient.MyWebViewClient;
+import com.gacrnd.gcs.webview.webviewprocess.webchromeclient.MyWebChromeClient;
+import com.gacrnd.gcs.webview.webviewprocess.webviewclient.MyWebViewClient;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
@@ -62,10 +62,9 @@ public class WebViewFragment extends Fragment implements WebChromeClientCallBack
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_webview, container, false);
+        binding.webview.registerWebViewCallBack(this,this);
+
         binding.webview.loadUrl(mUrl);
-        binding.webview.setWebViewClient(new MyWebViewClient(this));
-        binding.webview.setWebChromeClient(new MyWebChromeClient(this));
-        WebDefaultSettings.getInstance().setSettings(binding.webview);
         //初始化loadsir
         loadSir = LoadSir.getDefault().register(binding.smartRefreshLayout, new Callback.OnReloadListener() {
             @Override

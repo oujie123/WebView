@@ -7,8 +7,10 @@
     <!--android:usesCleartextTraffic="true"   如果要访问的url是http需要在application中加入这行代码
         Android 9.0以后默认不允许http请求
     -->
+    <!--android:process=":gacwebview"  新加一个进程，fragment不能单独开进程，只有四大组件才可以新开进程-->
     <application>
         <activity android:name=".WebViewActivity"
+            android:process=":gacwebview"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 </manifest>

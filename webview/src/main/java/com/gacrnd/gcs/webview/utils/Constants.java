@@ -9,4 +9,5 @@ public class Constants {
     public static final String KEY_TITLE = "title";
     public static final String KEY_SHOW_ACTION_BAR = "show_action_bar";
     public static final String KEY_AUTO_REFRESH = "auto_refresh";
+    public static final String KEY_ASSET_URL= "file:///android_asset/";
 }

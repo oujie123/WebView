@@ -29,4 +29,12 @@ public class WebViewServiceImpl implements IWebViewService {
     public Fragment getWebViewFragment(String url,boolean canAutoRefresh) {
         return WebViewFragment.newInstance(url,canAutoRefresh);
     }
+
+    @Override
+    public void startHtmlDemo(Context context) {
+        Intent intent = new Intent(context,WebViewActivity.class);
+        intent.putExtra(Constants.KEY_TITLE,"本地测试demo");
+        intent.putExtra(Constants.KEY_URL,Constants.KEY_ASSET_URL + "demo.html");
+        context.startActivity(intent);
+    }
 }

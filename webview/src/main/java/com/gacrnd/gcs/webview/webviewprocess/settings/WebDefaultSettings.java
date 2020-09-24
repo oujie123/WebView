@@ -1,4 +1,4 @@
-package com.gacrnd.gcs.webview.settings;
+package com.gacrnd.gcs.webview.webviewprocess.settings;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

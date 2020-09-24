@@ -1,10 +1,10 @@
-package com.gacrnd.gcs.webview.webchromeclient;
+package com.gacrnd.gcs.webview.webviewprocess.webchromeclient;
 
 import android.util.Log;
+import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
-import com.gacrnd.gcs.base.autoservice.MyServiceLoader;
 import com.gacrnd.gcs.webview.WebChromeClientCallBack;
 
 /**
@@ -27,5 +27,11 @@ public class MyWebChromeClient extends WebChromeClient {
         } else {
             Log.e(TAG,"WebChromeClientCallBack is null !");
         }
+    }
+
+    @Override
+    public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+        Log.d(TAG,consoleMessage.message());
+        return super.onConsoleMessage(consoleMessage);
     }
 }

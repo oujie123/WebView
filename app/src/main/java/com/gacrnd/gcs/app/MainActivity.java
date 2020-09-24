@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
                 //不止一个类实现了load中的接口，所以要用迭代器
                 IWebViewService webViewService = MyServiceLoader.load(IWebViewService.class);
                 if (webViewService != null) {
-                    webViewService.startWebViewActivity(MainActivity.this, "https://www.baidu.com", "", true);
+                    //webViewService.startWebViewActivity(MainActivity.this, "https://www.baidu.com", "", true);
+                    webViewService.startHtmlDemo(MainActivity.this);
                 }
             }
         });
