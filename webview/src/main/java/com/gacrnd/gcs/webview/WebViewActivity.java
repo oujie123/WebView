@@ -48,4 +48,8 @@ public class WebViewActivity extends AppCompatActivity {
         Fragment fragment = WebViewFragment.newInstance(url, true);
         fragmentTransaction.replace(R.id.web_view_fragment, fragment).commit();
     }
+
+    public void setTitle(String title) {
+        binding.title.setText(title);
+    }
 }

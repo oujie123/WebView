@@ -2,6 +2,7 @@
     package="com.gacrnd.gcs.webview" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <!--android:usesCleartextTraffic="true"   如果要访问的url是http需要在application中加入这行代码
         Android 9.0以后默认不允许http请求

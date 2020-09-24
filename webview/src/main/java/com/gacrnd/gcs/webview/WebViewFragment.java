@@ -13,7 +13,9 @@ import androidx.fragment.app.Fragment;
 import com.gacrnd.gcs.base.loadsir.ErrorCallback;
 import com.gacrnd.gcs.base.loadsir.LoadingCallback;
 import com.gacrnd.gcs.webview.databinding.FragmentWebviewBinding;
+import com.gacrnd.gcs.webview.settings.WebDefaultSettings;
 import com.gacrnd.gcs.webview.utils.Constants;
+import com.gacrnd.gcs.webview.webchromeclient.MyWebChromeClient;
 import com.gacrnd.gcs.webview.webviewclient.MyWebViewClient;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
@@ -28,7 +30,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
  * @UpdateDate: 2020/9/23 22:18
  * @UpdateRemark: 更新说明
  */
-public class WebViewFragment extends Fragment implements WebViewCallBack, OnRefreshListener {
+public class WebViewFragment extends Fragment implements WebChromeClientCallBack, WebViewCallBack, OnRefreshListener {
 
     private static final String TAG = WebViewFragment.class.getSimpleName();
     private String mUrl;
@@ -37,11 +39,11 @@ public class WebViewFragment extends Fragment implements WebViewCallBack, OnRefr
     private boolean canAutoRefresh;
     private boolean isError = false;
 
-    public static WebViewFragment newInstance(String url,boolean canAutoRefresh) {
+    public static WebViewFragment newInstance(String url, boolean canAutoRefresh) {
         WebViewFragment fragment = new WebViewFragment();
         Bundle bundle = new Bundle();
         bundle.putString(Constants.KEY_URL, url);
-        bundle.putBoolean(Constants.KEY_AUTO_REFRESH,canAutoRefresh);
+        bundle.putBoolean(Constants.KEY_AUTO_REFRESH, canAutoRefresh);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -60,9 +62,10 @@ public class WebViewFragment extends Fragment implements WebViewCallBack, OnRefr
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_webview, container, false);
-        binding.webview.getSettings().setJavaScriptEnabled(true);
         binding.webview.loadUrl(mUrl);
         binding.webview.setWebViewClient(new MyWebViewClient(this));
+        binding.webview.setWebChromeClient(new MyWebChromeClient(this));
+        WebDefaultSettings.getInstance().setSettings(binding.webview);
         //初始化loadsir
         loadSir = LoadSir.getDefault().register(binding.smartRefreshLayout, new Callback.OnReloadListener() {
             @Override
@@ -92,7 +95,7 @@ public class WebViewFragment extends Fragment implements WebViewCallBack, OnRefr
     @Override
     public void pageFinished(String url) {
         if (loadSir != null) {
-            if (!isError){
+            if (!isError) {
                 binding.smartRefreshLayout.setEnableRefresh(canAutoRefresh);
                 loadSir.showSuccess();
             } else {
@@ -116,4 +119,10 @@ public class WebViewFragment extends Fragment implements WebViewCallBack, OnRefr
     }
 
 
+    @Override
+    public void onReceivedTitle(String title) {
+        if (getActivity() instanceof WebViewActivity) {
+            ((WebViewActivity) getActivity()).setTitle(title);
+        }
+    }
 }
