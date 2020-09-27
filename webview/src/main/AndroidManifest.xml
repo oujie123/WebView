@@ -12,5 +12,6 @@
         <activity android:name=".WebViewActivity"
             android:process=":gacwebview"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <service android:name=".mainprocessor.MainProcessorService"/>
     </application>
 </manifest>

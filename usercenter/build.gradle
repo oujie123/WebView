@@ -10,7 +10,6 @@ android {
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        dataBinding.enabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         //不加autoservice会报错
         android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
@@ -26,15 +25,16 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    //implementation 'com.google.android.material:material:1.3.0-alpha02'
+    implementation 'com.google.android.material:material:1.0.0'
     implementation "androidx.appcompat:appcompat:$androidXVersion"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation rootProject.googleAutoServiceDependency
-    api project(':common')
 
+    api project(':common')
     //api相当于java public   如果希望其他可以用，就api
     //implementation 相当于java private
 }

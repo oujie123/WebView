@@ -21,11 +21,29 @@
             console.log("callAppToast.");
             gacjs.takeNativeAction("showToast", {message: "this is a message from html."});
         }
-
+        function openActivityA(){
+            console.log("openActivityA.");
+            gacjs.takeNativeAction("openPage", {target_class: "com.gacrnd.gcs.app.MainProcessorActivity"});
+        }
+        function openActivityB(){
+            console.log("openActivityB.");
+            gacjs.takeNativeAction("openPage", {target_class: "com.gacrnd.gcs.app.MainProcessorActivityB"});
+        }
+        function login(){
+            console.log("login.");
+            gacjs.takeNativeActionWithCallback("login", {}, function(res) {
+                 var element = document.createElement("div");
+                 element.appendChild(document.createTextNode("userName: "+res.accountName));
+                 document.getElementById('login_id').appendChild(element);
+            });
+        }
     </script>
     <script src="js/gacjs.js" charset="utf-8"></script>
 </head>
 <body style="height: 100%;">
 <div class="item" style="font-size: 20px; color: #ffffff" onclick="callAppToast()">调用: showToast</div>
+<div class="item" style="font-size: 20px; color: #ffffff" onclick="openActivityA()">打开主进程Activity</div>
+<div class="item" style="font-size: 20px; color: #ffffff" onclick="openActivityB()">打开主进程ActivityB</div>
+<div id="login_id" class="item" style="font-size: 20px; color: #ffffff" onclick="login()">登录带返回</div>
 </body>
 </html>
